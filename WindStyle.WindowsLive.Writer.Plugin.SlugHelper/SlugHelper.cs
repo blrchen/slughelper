@@ -33,12 +33,18 @@ namespace WindStyle.WindowsLiveWriter.Plugin.SlugHelper
                                                 Title = title, 
                                                 Slug = slug
                                             });
-            if (se.ShowDialog() == DialogResult.OK)
+
+            var result = se.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 slugProp.SetValue(postObj, se.Slug, null);
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
-            return true;
         }
 
         public override void EditOptions(IWin32Window dialogOwner)
